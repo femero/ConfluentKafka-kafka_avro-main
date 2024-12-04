@@ -10,7 +10,7 @@ Table of Contents
 * [Requirementos](#requirementos)
   * [Kafka](#kafka) 
   * [Java](#java)
-
+![img.png](img.png)
 
 ---
 <a name="kafka-local"/>
