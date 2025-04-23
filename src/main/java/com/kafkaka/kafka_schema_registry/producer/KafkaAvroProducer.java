@@ -21,7 +21,7 @@ public class KafkaAvroProducer {
 
     public CompletableFuture<String> send(orderRecord orderRecord) {
         CompletableFuture<SendResult<String, orderRecord>> future =
-                template.send(topicName, 0, UUID.randomUUID().toString(), orderRecord);
+                template.send(topicName, 1, UUID.randomUUID().toString(), orderRecord);
 
 
         return future.whenComplete((result, ex) -> {

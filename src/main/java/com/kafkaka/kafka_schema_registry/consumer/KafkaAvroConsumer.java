@@ -20,7 +20,7 @@ public class KafkaAvroConsumer {
     public void read(ConsumerRecord<String, orderRecord> consumerRecord) {
         String key = consumerRecord.key();
         orderRecord employee = consumerRecord.value();
-        log.info("Consumer kafka read - Avro message received for key: {}, value: {}, Key: {}, Value: {}, Partition: {}, Offset: {}",
+        log.info("Consumer kafka read0 - Avro message received for key: {}, value: {}, Key: {}, Value: {}, Partition: {}, Offset: {}",
                 key,
                 employee.toString(),
                 consumerRecord.key(),
@@ -38,7 +38,7 @@ public class KafkaAvroConsumer {
     public void read2(ConsumerRecord<String, orderRecord> consumerRecord) {
         String key = consumerRecord.key();
         orderRecord employee = consumerRecord.value();
-        log.info("Consumer kafka read2 - Avro message received for key: {}, value: {}, Key: {}, Value: {}, Partition: {}, Offset: {}",
+        log.info("Consumer kafka read1 - Avro message received for key: {}, value: {}, Key: {}, Value: {}, Partition: {}, Offset: {}",
                 key,
                 employee.toString(),
                 consumerRecord.key(),
@@ -56,7 +56,7 @@ public class KafkaAvroConsumer {
     public void read3(ConsumerRecord<String, orderRecord> consumerRecord) {
         String key = consumerRecord.key();
         orderRecord employee = consumerRecord.value();
-        log.info("Consumer kafka read3 - Avro message received for key: {}, value: {}, Key: {}, Value: {}, Partition: {}, Offset: {}",
+        log.info("Consumer kafka read2 - Avro message received for key: {}, value: {}, Key: {}, Value: {}, Partition: {}, Offset: {}",
                 key,
                 employee.toString(),
                 consumerRecord.key(),
