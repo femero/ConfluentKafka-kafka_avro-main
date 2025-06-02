@@ -1,6 +1,3 @@
-topic:
-  name: order-topic  # Debe estar alineado correctamente
-
 server:
   port: 8181
 
@@ -10,6 +7,9 @@ spring:
     producer:
       keySerializer: "org.apache.kafka.common.serialization.StringSerializer"
       valueSerializer: "io.confluent.kafka.serializers.KafkaAvroSerializer"
+      #retries: 3
+      #request-timeout-ms: 30000
+      #delivery-timeout-ms: 120000
       properties:
         schema:
           registry:
@@ -19,6 +19,10 @@ spring:
       keyDeserializer: "org.apache.kafka.common.serialization.StringDeserializer"
       valueDeserializer: "io.confluent.kafka.serializers.KafkaAvroDeserializer"
       autoOffsetReset: "earliest"
+      enableAutoCommit: true
+      #session-timeout-ms: 30000
+      #heartbeat-interval-ms: 3000
+      #request-timeout-ms: 30000
       properties:
         schema:
           registry:

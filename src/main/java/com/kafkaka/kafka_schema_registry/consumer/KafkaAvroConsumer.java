@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class KafkaAvroConsumer {
 
-    @KafkaListener(topics = "${topic.name}",
+    @KafkaListener(topics = "order-topic",
             topicPartitions ={ @TopicPartition(
                     topic ="order-topic",
                     partitionOffsets = @PartitionOffset(partition = "0", initialOffset = "0")
@@ -30,7 +30,7 @@ public class KafkaAvroConsumer {
 
     }
 
-    @KafkaListener(topics = "${topic.name}",
+    @KafkaListener(topics = "order-topic",
             topicPartitions ={ @TopicPartition(
                     topic ="order-topic",
                     partitionOffsets = @PartitionOffset(partition = "1", initialOffset = "0")
@@ -48,7 +48,7 @@ public class KafkaAvroConsumer {
 
     }
 
-    @KafkaListener(topics = "${topic.name}",
+    @KafkaListener(topics = "order-topic",
             topicPartitions ={ @TopicPartition(
                     topic ="order-topic",
                     partitionOffsets = @PartitionOffset(partition = "2", initialOffset = "0")

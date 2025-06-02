@@ -16,8 +16,6 @@ services:
     ports:
       - "9092:9092"
     environment:
-      KAFKA_DELETE_TOPIC_ENABLE: "true"
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
@@ -75,7 +73,7 @@ services:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       # O si está utilizando otra biblioteca
       BOOTSTRAP_SERVERS: kafka:9092
-      #TOPIC_NAME: order-topic  # Añade esta línea
+      TOPIC_NAME: order-topic  # Añade esta línea
     ports:
       - "8181:8181"
     depends_on:

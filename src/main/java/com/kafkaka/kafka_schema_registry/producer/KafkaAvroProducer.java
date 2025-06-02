@@ -13,7 +13,7 @@ import java.util.concurrent.CompletableFuture;
 @Service
 public class KafkaAvroProducer {
 
-    @Value("${topic.name}")
+    @Value("order-topic")
     private String topicName;
 
     @Autowired
