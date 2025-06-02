@@ -1,3 +1,4 @@
+PASO 0
 Detener y eliminar contenedores
 docker-compose down
 
@@ -34,7 +35,7 @@ curl -X POST http://localhost:8081/subjects/schema-test-value/versions \
 
 curl -X GET http://localhost:8081/subjects
 
-PASO 6
+PASO 6 *****Creación de tópico con contenedores
 docker exec -it kafka kafka-topics \
     --create \
     --topic order-topic \
@@ -42,8 +43,10 @@ docker exec -it kafka kafka-topics \
     --partitions 3 \
     --replication-factor 1
 
-PASO 7
+PASO 7*****Subida del docker-compose
 docker-compose up -d kafka_avro-main
+
+PASO 8 *****Mtto del servicio
 docker logs -f kafka_avro-main
 docker stop kafka_avro-main
 docker rm kafka_avro-main
