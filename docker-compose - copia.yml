@@ -15,16 +15,13 @@ services:
     container_name: kafka
     ports:
       - "9092:9092"
-      - "29092:29092"
     environment:
       KAFKA_DELETE_TOPIC_ENABLE: "true"
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL      
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_INTERNAL://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
@@ -45,7 +42,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka:29092
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka:9092
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
       # Factor de replicación para un solo broker
@@ -62,6 +59,28 @@ services:
         kafka:
           condition: service_healthy
     restart: always
+    networks:
+      - microservices-network
+
+  # kafka_avro-main
+  kafka_avro-main:
+    container_name: kafka_avro-main
+    build:
+      context: .
+    environment:
+      # Esto debe reflejarse en la configuración de la aplicación
+      KAFKA_BROKER: kafka:9092
+      SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      # Añadir esta variable de entorno si su aplicación utiliza Spring
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      # O si está utilizando otra biblioteca
+      BOOTSTRAP_SERVERS: kafka:9092
+      #TOPIC_NAME: order-topic  # Añade esta línea
+    ports:
+      - "8181:8181"
+    depends_on:
+      - kafka
+      - schema-registry
     networks:
       - microservices-network
 

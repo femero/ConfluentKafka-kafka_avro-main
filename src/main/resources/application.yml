@@ -3,7 +3,8 @@ server:
 
 spring:
   kafka:
-    bootstrap-servers: ${KAFKA_BROKER:kafka:9092} # Cambiado de 127.0.0.1:9092
+    #bootstrap-servers: ${KAFKA_BROKER:kafka:9092} # Cambiado de 127.0.0.1:9092
+    bootstrap-servers: ${KAFKA_BROKER:localhost:9092}
     producer:
       keySerializer: "org.apache.kafka.common.serialization.StringSerializer"
       valueSerializer: "io.confluent.kafka.serializers.KafkaAvroSerializer"
@@ -13,7 +14,8 @@ spring:
       properties:
         schema:
           registry:
-            url: "http://schema-registry:8081"  # Cambiado de 127.0.0.1:8081
+            #url: "http://schema-registry:8081"  # Cambiado de 127.0.0.1:8081
+            url: "http://localhost:8081"
     consumer:
       group-id: "prueba-new"
       keyDeserializer: "org.apache.kafka.common.serialization.StringDeserializer"
@@ -26,7 +28,8 @@ spring:
       properties:
         schema:
           registry:
-            url: "http://schema-registry:8081"  # Cambiado de 127.0.0.1:8081
+            #url: "http://schema-registry:8081"  # Cambiado de 127.0.0.1:8081
+            url: "http://localhost:8081"
         specific:
           avro:
             reader: "true"
