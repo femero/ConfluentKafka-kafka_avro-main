@@ -21,12 +21,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8181/events",
+					"raw": "localhost:8181/api/events",
 					"host": [
 						"localhost"
 					],
 					"port": "8181",
 					"path": [
+						"api",
 						"events"
 					]
 				}
