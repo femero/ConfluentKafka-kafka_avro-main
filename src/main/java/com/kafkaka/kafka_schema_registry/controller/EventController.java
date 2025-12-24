@@ -1,7 +1,7 @@
 package com.kafkaka.kafka_schema_registry.controller;
 
 import com.kafkaka.kafka_schema_registry.dto.orderRecord;
-import com.kafkaka.kafka_schema_registry.producer.KafkaAvroProducer;
+import com.kafkaka.kafka_schema_registry.producer.KafkaAvroProducer21;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
 public class EventController {
 
     @Autowired
-    private KafkaAvroProducer producer;
+    private KafkaAvroProducer21 producer;
 
     @PostMapping("/events")
     public CompletableFuture<ResponseEntity<Map<String, Object>>> sendMessage(@RequestBody orderRecord order) {

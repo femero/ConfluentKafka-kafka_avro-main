@@ -33,3 +33,7 @@ spring:
         specific:
           avro:
             reader: "true"
+
+kafka:
+  partition:
+    default: 1
